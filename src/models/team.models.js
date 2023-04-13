@@ -51,7 +51,13 @@ const teamSchema = new Schema(
             type: String,
             allowNull: false,
             unique: true
-        }
+        },
+        players: [
+            {
+              type: mongoose.SchemaTypes.ObjectId,
+              ref: "Player",
+            },
+          ],
     },
     { timestamps: true }
 );
