@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 
 const playerSchema = new Schema (
     {
-        firstName:{
+         firstName:{
             type: String,
             allowNull: false
           },
@@ -48,6 +48,6 @@ const playerSchema = new Schema (
     { timestamps: true }
 )
 
-const Player = mongoose.model("Player", playerSchema);
+const Player1 = mongoose.model("Player1", playerSchema);
 
-module.exports = Player;
+module.exports = Player1;
