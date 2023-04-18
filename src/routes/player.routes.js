@@ -11,6 +11,4 @@ PlayerRouter.post("/updateDetails", PlayerController.UpdatePlayer)
 
 PlayerRouter.post("/team/:teamid/player/:playerid",PlayerController.addPlayer)
 
-module.exports = {
-  PlayerRouter,
-};
+module.exports = PlayerRouter

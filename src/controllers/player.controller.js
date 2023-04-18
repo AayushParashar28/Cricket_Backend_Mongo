@@ -93,10 +93,10 @@ exports.UpdatePlayer = async (req, res) => {
 
 exports.addPlayer = async (req, res) => {
     try {
-      const team = await TeamModel.findById(req.params.teamId);
+      const team = await TeamModel.findById(req.params.teamid);
   
       if (team) {
-        const player = await PlayerModel.findById(req.params.playerId);
+        const player = await PlayerModel.findById(req.params.playerid);
         if (player) {
           console.log(team);
           team.players.push(player._id);

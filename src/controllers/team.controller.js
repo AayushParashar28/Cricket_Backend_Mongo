@@ -70,7 +70,7 @@ exports.updateTeam = async (req, res) => {
 
 exports.getAllTeam = async (req, res) => {
   try {
-    const result = await TeamModel.find()
+    const result = await TeamModel.find().populate("players")
 
     return res.status(201).json({
       sucess: true,
