@@ -55,23 +55,15 @@ exports.UpdatePlayer = async (req, res) => {
         const Player = {
             email: req.body.email
         }
-        const checkPlayer = await PlayerModel.findOne({
-            where:
-            {
-                email: Player.email
-            }
-        })
+        const checkPlayer = await PlayerModel.findOne({email: Player.email})
 
         if (checkPlayer) {
-            checkPlayer.contact = req.body.contact,
+                checkPlayer.contact = req.body.contact,
                 checkPlayer.match = req.body.match,
                 checkPlayer.score = req.body.score,
                 checkPlayer.highestscore = req.body.highestscore,
                 checkPlayer.playertype = req.body.playertype,
-                checkPlayer.captain = req.body.captain,
-                checkPlayer.vicecaptain = req.body.vicecaptain,
-                checkPlayer.bidprice = req.body.bidprice,
-                checkPlayer.teamID = req.body.teamID
+                checkPlayer.bidprice = req.body.bidprice
 
             const result = await checkPlayer.save();
             return res.status(200).json({
@@ -93,23 +85,23 @@ exports.UpdatePlayer = async (req, res) => {
 
 exports.addPlayer = async (req, res) => {
     try {
-      const team = await TeamModel.findById(req.params.teamid);
-  
-      if (team) {
-        const player = await PlayerModel.findById(req.params.playerid);
-        if (player) {
-          console.log(team);
-          team.players.push(player._id);
-          await team.save();
-          res.json({ Messages: "Ok" });
+        const team = await TeamModel.findById(req.params.teamid);
+
+        if (team) {
+            const player = await PlayerModel.findById(req.params.playerid);
+            if (player) {
+                console.log(team);
+                team.players.push(player._id);
+                await team.save();
+                res.json({ Messages: "Ok" });
+            } else {
+                res.json({ Message: " Team is correct but Player id not found" });
+            }
         } else {
-          res.json({ Message: " Team is correct but Player id not found" });
+            res.json({ Message: "Team id not found" });
         }
-      } else {
-        res.json({ Message: "Team id not found" });
-      }
     } catch (error) {
-      console.log(error);
-      res.json({ Message: "Internal Server error" });
+        console.log(error);
+        res.json({ Message: "Internal Server error" });
     }
-  };
+};
